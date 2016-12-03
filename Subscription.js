@@ -1,8 +1,19 @@
+      // Initialize Firebase
+      // TODO: Replace with your project's customized code snippet
+      var config = {
+        apiKey: "AIzaSyAw1I3J8eicTSJUZTnHPlyrqZ3G1AmaWlI",
+        authDomain: "mcnotification-dda3a.firebaseapp.com",
+        databaseURL: "https://mcnotification-dda3a.firebaseio.com",
+        messagingSenderId: "472090871905",
+      };
+      var defaultApp;
+      var user;
+
+
 window.addEventListener('load', function () {
     
-      var defaultApp = firebase.initializeApp(config);
-      var user;
-      
+      defaultApp = firebase.initializeApp(config);
+    
       var provider = new firebase.auth.GoogleAuthProvider();
       firebase.auth().signInWithPopup(provider).then(function(result) {
         // This gives you a Google Access Token. You can use it to access the Google API.
