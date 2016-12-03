@@ -124,13 +124,17 @@ function postSubscribeObj(endpoint, key, secret) {
     var emailId = user.email.split("@")[0];
     console.log(emailId);
     
-    var eplist = firebase.database().ref('users/'+ emailId);
-    var newEp =eplist.push();
-      
+    var epref = firebase.database().ref('users/'+ emailId);
+    var isRepeat = epref.orderByChild("Endpoint").equalTo(endpoint);
+    console.log(isRepeat);
+    
+    if(isRepeat){
+      var newEp =epref.push();
       newEp.set({
             Endpoint: endpoint,
             PublicKey: btoa(String.fromCharCode.apply(null, new Uint8Array(key))),
             AuthSecret: btoa(String.fromCharCode.apply(null, new Uint8Array(secret)))
         });
+    }
     
 }
