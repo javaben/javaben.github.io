@@ -124,7 +124,10 @@ function postSubscribeObj(endpoint, key, secret) {
     var emailId = user.email.split("@")[0];
     console.log(emailId);
     
-    firebase.database().ref('users/'+ emailId).set({
+    var eplist = firebase.database().ref('users/'+ emailId);
+    var newEp =eplist.push();
+      
+      newEp.set({
             Endpoint: endpoint,
             PublicKey: btoa(String.fromCharCode.apply(null, new Uint8Array(key))),
             AuthSecret: btoa(String.fromCharCode.apply(null, new Uint8Array(secret)))
