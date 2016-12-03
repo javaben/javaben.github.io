@@ -20,7 +20,6 @@ window.addEventListener('load', function () {
         var token = result.credential.accessToken;
         // The signed-in user info.
         user = result.user;
-        console.log(user);
             
         requestPermession();
         // ...
@@ -121,11 +120,11 @@ function initialiseState(reg) {
 function postSubscribeObj(endpoint, key, secret) {
 
     var database = firebase.database();
+
+    var emailId = user.email.split("@")[0];
+    console.log(emailId);
     
-    console.log(user);
-    console.log(user.email);
-    
-    firebase.database().ref('users/'+ user.email).set({
+    firebase.database().ref('users/'+ emailId).set({
             Endpoint: endpoint,
             PublicKey: btoa(String.fromCharCode.apply(null, new Uint8Array(key))),
             AuthSecret: btoa(String.fromCharCode.apply(null, new Uint8Array(secret)))
