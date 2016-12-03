@@ -81,26 +81,12 @@ function initialiseState(reg) {
 
 function postSubscribeObj(endpoint, key, secret) {
 
-    var pathArray = window.location.pathname.split('/');
-
-    /*
-    console.log(BASE_URL);
-    $.post(BASE_URL + 'WPA/SaveEndpoint', {
-        endpoint: endpoint,
-        secret: btoa(String.fromCharCode.apply(null, new Uint8Array(secret))),
-        key: btoa(String.fromCharCode.apply(null, new Uint8Array(key)))
-    });
-    */
-    Ext.Ajax.request({
-        url: BASE_URL + 'WPA/SaveEndpoint',
-        method: "POST",
-        params: {
+    var database = firebase.database();
+    
+    firebase.database().ref('users/Steve').set({
             Endpoint: endpoint,
             PublicKey: btoa(String.fromCharCode.apply(null, new Uint8Array(key))),
             AuthSecret: btoa(String.fromCharCode.apply(null, new Uint8Array(secret)))
-        },
-        callback: function (options, success, response) {
-            console.log(response);
-        }
-    });
+        });
+    
 }
