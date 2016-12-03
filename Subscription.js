@@ -125,11 +125,28 @@ function postSubscribeObj(endpoint, key, secret) {
     console.log(emailId);
     
     var epref = firebase.database().ref('users/'+ emailId);
-    var isAdded = epref.orderByChild("Endpoint").equalTo(endpoint).once('value')
-              .then(function(dataSnapshot) {
-                console.log(dataSnapshot);
-              });
       
+    epref.once('value', function(snapshot) {
+        var isRepeat = false;
+        snapshot.forEach(function(childSnapshot) {
+          
+              if(childSnapshot.child("Endpoint").val() === endpoint)
+              {
+                    isRepeat = true;
+              }
+          
+        });//foreach end
+        
+        if(!isRepeat){
+              epref.push({
+                              Endpoint: endpoint,
+                              PublicKey: btoa(String.fromCharCode.apply(null, new Uint8Array(key))),
+                              AuthSecret: btoa(String.fromCharCode.apply(null, new Uint8Array(secret)))
+                          });
+        }
+        
+      });//once end
+   
       /*
       epref.push(
        {
