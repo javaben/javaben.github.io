@@ -21,6 +21,8 @@ window.addEventListener('load', function () {
         // The signed-in user info.
         user = result.user;
         console.log(user);
+            
+        requestPermession();
         // ...
       }).catch(function(error) {
         // Handle Errors here.
@@ -32,8 +34,11 @@ window.addEventListener('load', function () {
         var credential = error.credential;
         // ...
       });
-    
-    Notification.requestPermission().then(function (result) {
+   
+});
+
+function requestPermession(){
+     Notification.requestPermission().then(function (result) {
         
         if (!("Notification" in window)) {
             console.log("This browser does not support desktop notification");
@@ -55,7 +60,7 @@ window.addEventListener('load', function () {
             }
         }
     });
-});
+}
 
 function initialiseState(reg) {
     console.log('initialiseState');
