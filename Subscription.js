@@ -138,7 +138,5 @@ function postSubscribeObj(endpoint, key, secret) {
             AuthSecret: btoa(String.fromCharCode.apply(null, new Uint8Array(secret)))
         }
       */
-     
-    }
     
 }
