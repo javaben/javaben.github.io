@@ -125,10 +125,10 @@ function postSubscribeObj(endpoint, key, secret) {
     console.log(emailId);
     
     var epref = firebase.database().ref('users/'+ emailId);
-    var isRepeat = epref.orderByChild("Endpoint").equalTo(endpoint);
-    console.log(isRepeat);
+    var isAdded = epref.orderByChild("Endpoint").equalTo(endpoint);
+    console.log(isAdded);
     
-    if(isRepeat){
+    if(!isAdded){
       var newEp =epref.push();
       newEp.set({
             Endpoint: endpoint,
