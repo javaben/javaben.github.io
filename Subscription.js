@@ -122,6 +122,9 @@ function postSubscribeObj(endpoint, key, secret) {
 
     var database = firebase.database();
     
+    console.log(user);
+    console.log(user.email);
+    
     firebase.database().ref('users/'+ user.email).set({
             Endpoint: endpoint,
             PublicKey: btoa(String.fromCharCode.apply(null, new Uint8Array(key))),
