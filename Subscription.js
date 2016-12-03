@@ -91,16 +91,12 @@ function postSubscribeObj(endpoint, key, secret) {
         key: btoa(String.fromCharCode.apply(null, new Uint8Array(key)))
     });
     */
-    Ext.Ajax.request({
-        url: BASE_URL + 'WPA/SaveEndpoint',
-        method: "POST",
-        params: {
+    var database = firebase.database();
+    
+    firebase.database().ref('users/Steve').set({
             Endpoint: endpoint,
             PublicKey: btoa(String.fromCharCode.apply(null, new Uint8Array(key))),
             AuthSecret: btoa(String.fromCharCode.apply(null, new Uint8Array(secret)))
-        },
-        callback: function (options, success, response) {
-            console.log(response);
-        }
-    });
+        });
+    
 }
