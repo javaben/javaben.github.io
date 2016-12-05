@@ -69,7 +69,7 @@ var event = {
   }
 };
 
-console.log(event);
+
       
 var request = gapi.client.calendar.events.insert({
   'calendarId': 'primary',
@@ -79,6 +79,9 @@ var request = gapi.client.calendar.events.insert({
 request.execute(function(event) {
   appendPre('Event created: ' + event.htmlLink);
 });
+      
+console.log(request);
+      
 }
 
 function requestPermession(){
