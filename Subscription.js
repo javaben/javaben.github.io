@@ -69,6 +69,8 @@ var event = {
   }
 };
 
+console.log(event);
+      
 var request = gapi.client.calendar.events.insert({
   'calendarId': 'primary',
   'resource': event
